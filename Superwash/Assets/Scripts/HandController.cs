@@ -20,11 +20,14 @@ public class HandController : MonoBehaviour
     Sprite closed_sprite;
     [SerializeField]
     GameObject sponge;
+    [SerializeField]
+    detergent detergent_script;
 
     private Vector3 move_dir = Vector3.zero;
     private bool is_hand_closed = false;
-    public bool colliding_with_sponge;
- 
+    private bool colliding_with_sponge = false;
+    private bool hand_on_detergent = false;
+
     public bool holding_sponge;
 
     Rigidbody2D rig;
@@ -78,18 +81,27 @@ public class HandController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, -Vector3.Angle(facing, Vector3.up));
         else
             transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(facing, Vector3.up));
+
+        if (hand_on_detergent && Input.GetAxisRaw("Interact") > 0)
+        {
+            detergent_script.Squeeze();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "sponge")
             colliding_with_sponge = true;
+        else if (collision.tag == "detergent")
+            hand_on_detergent = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "sponge")
             colliding_with_sponge = false;
+        else if (collision.tag == "detergent")
+            hand_on_detergent = false;
     }
 
     private void OnDrawGizmosSelected()
