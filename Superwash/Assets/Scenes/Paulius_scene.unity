@@ -306,6 +306,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7123643329192309419, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1678886858614607995, guid: b056b6edbe6f0a74ea8fa999dde4c185, type: 3}
     - target: {fileID: 7610209116831850069, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
@@ -349,6 +353,22 @@ PrefabInstance:
     - target: {fileID: 7610209116831850069, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979981017475183330, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
+      propertyPath: open_sprite
+      value: 
+      objectReference: {fileID: 1678886858614607995, guid: b056b6edbe6f0a74ea8fa999dde4c185, type: 3}
+    - target: {fileID: 7979981017475183330, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
+      propertyPath: closed_sprite
+      value: 
+      objectReference: {fileID: -3035312099375538977, guid: c1b4af0f0cd41e540b182e218fe34508, type: 3}
+    - target: {fileID: 7979981017475183330, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
+      propertyPath: 'edges.Array.data[0]'
+      value: -8.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979981017475183330, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
+      propertyPath: 'edges.Array.data[1]'
+      value: 2.54
       objectReference: {fileID: 0}
     - target: {fileID: 8958710504818676231, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
       propertyPath: m_Name

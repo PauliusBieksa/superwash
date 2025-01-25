@@ -13,41 +13,44 @@ public class HandController : MonoBehaviour
     float center_line = 0f;
     [SerializeField]
     float angle_coeficient = -10f;
-  
 
+    [SerializeField]
+    Sprite open_sprite;
+    [SerializeField]
+    Sprite closed_sprite;
+
+    private Vector3 move_dir = Vector3.zero;
+    private bool is_hand_closed = false;
 
     Rigidbody2D rig;
+    SpriteRenderer sprite_renderer;
 
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        sprite_renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 dir = new Vector3(0f, 0f, 0f);
+        if (Input.GetAxisRaw("Interact") > 0 && !is_hand_closed)
+        {
+            is_hand_closed = true;
+            sprite_renderer.sprite = closed_sprite;
+        }
+        if (Input.GetAxisRaw("Interact") == 0 && is_hand_closed)
+        {
+            is_hand_closed = false;
+            sprite_renderer.sprite = open_sprite;
+        }
+
+        move_dir = new Vector3(0f, 0f, 0f);
         Vector3 new_pos = transform.position;
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            dir += new Vector3(0f, 1f, 0f);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            dir += new Vector3(-1f, 0f, 0f);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            dir += new Vector3(0f, -1f, 0f);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            dir += new Vector3(1f, 0f, 0f);
-        }
-        dir.Normalize();
+        move_dir = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
-        new_pos += dir * move_speed * Time.deltaTime;
+        new_pos += move_dir * move_speed * Time.deltaTime;
         if (new_pos.x < edges[0]) new_pos.x = edges[0];
         if (new_pos.y > edges[1]) new_pos.y = edges[1];
         if (new_pos.x > edges[2]) new_pos.x = edges[2];
