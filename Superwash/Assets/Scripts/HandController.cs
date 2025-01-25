@@ -56,7 +56,6 @@ public class HandController : MonoBehaviour
 
         Vector3 facing = (new Vector3(center_line, angle_coeficient, 0)) - new_pos;
         facing.Normalize();
-        Debug.Log(facing);
         if (new_pos.x > center_line)
             transform.rotation = Quaternion.Euler(0, 0, -Vector3.Angle(facing, Vector3.up));
         else
