@@ -11,14 +11,17 @@ public class SoundManager : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < audioSources.Count; i++)
+        if (audioSources != null)
         {
-            if (!audioSources[i].isPlaying)
+            for (int i = 0; i < audioSources.Count; i++)
             {
-                Destroy(audioSources[i]);
-                audioSources.RemoveAt(i);
+                if (!audioSources[i].isPlaying)
+                {
+                    Destroy(audioSources[i]);
+                    audioSources.RemoveAt(i);
+                }
             }
-        } 
+        }
     }
 
     public void PlaySound(AudioClip clip, float vol, float pitch)
