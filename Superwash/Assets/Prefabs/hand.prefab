@@ -128,3 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d69842b12a35714e840adc387886b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move_speed: 8
+  show_debug: 1
+  edges:
+  - -8.56
+  - 3.18
+  - 6.23
+  - -3.78
+  center_line: 0
+  angle_coeficient: 20
