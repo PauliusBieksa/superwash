@@ -18,9 +18,14 @@ public class HandController : MonoBehaviour
     Sprite open_sprite;
     [SerializeField]
     Sprite closed_sprite;
+    [SerializeField]
+    GameObject sponge;
 
     private Vector3 move_dir = Vector3.zero;
     private bool is_hand_closed = false;
+    public bool colliding_with_sponge;
+ 
+    public bool holding_sponge;
 
     Rigidbody2D rig;
     SpriteRenderer sprite_renderer;
@@ -45,11 +50,15 @@ public class HandController : MonoBehaviour
             sprite_renderer.sprite = open_sprite;
         }
 
+        if (is_hand_closed && colliding_with_sponge)
+            holding_sponge = true;
+        else
+            holding_sponge = false;
+
+        // movement
         move_dir = new Vector3(0f, 0f, 0f);
         Vector3 new_pos = transform.position;
-
         move_dir = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
-
         new_pos += move_dir * move_speed * Time.deltaTime;
         if (new_pos.x < edges[0]) new_pos.x = edges[0];
         if (new_pos.y > edges[1]) new_pos.y = edges[1];
@@ -57,12 +66,30 @@ public class HandController : MonoBehaviour
         if (new_pos.y < edges[3]) new_pos.y = edges[3];
         rig.MovePosition(new_pos);
 
+        // moving the sponge
+        if (holding_sponge)
+        {
+            sponge.transform.position = new_pos;
+        }
+
         Vector3 facing = (new Vector3(center_line, angle_coeficient, 0)) - new_pos;
         facing.Normalize();
         if (new_pos.x > center_line)
             transform.rotation = Quaternion.Euler(0, 0, -Vector3.Angle(facing, Vector3.up));
         else
             transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(facing, Vector3.up));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "sponge")
+            colliding_with_sponge = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "sponge")
+            colliding_with_sponge = false;
     }
 
     private void OnDrawGizmosSelected()
