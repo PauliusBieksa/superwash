@@ -7,7 +7,6 @@ TagManager:
   - sponge
   - detergent
   - taps
-  - plate
   layers:
   - Default
   - TransparentFX
