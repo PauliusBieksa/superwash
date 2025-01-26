@@ -16,6 +16,7 @@ public class WashableObject : MonoBehaviour
 
     public bool is_clean = false;
     public bool is_wet = false;
+    public bool is_being_held = false;
 
     void Start()
     {
@@ -41,7 +42,6 @@ public class WashableObject : MonoBehaviour
                 {
                     dirt_level = i;
                     dirt_sprite_renderer.sprite = dirt_sprites[i];
-                    Debug.Log(i);
                     break;
                 }
             }
