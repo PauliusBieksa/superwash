@@ -20,6 +20,7 @@ public class HandController : MonoBehaviour
     Sprite closed_sprite;
     [SerializeField]
     GameObject sponge_obj;
+    sponge sponge_script;
     [SerializeField]
     detergent detergent_script;
     [SerializeField]
@@ -43,6 +44,7 @@ public class HandController : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         sprite_renderer = GetComponent<SpriteRenderer>();
+        sponge_script = sponge_obj.GetComponent<sponge>();
     }
 
     // Update is called once per frame
@@ -59,12 +61,12 @@ public class HandController : MonoBehaviour
             sprite_renderer.sprite = open_sprite;
         }
 
-        if (is_hand_closed && colliding_with_sponge)
+        if (is_hand_closed && colliding_with_sponge && !holding_plate)
             holding_sponge = true;
         else
             holding_sponge = false;
 
-        if (is_hand_closed && hand_on_plate)
+        if (is_hand_closed && hand_on_plate && !holding_sponge)
             holding_plate = true;
         else
             holding_plate = false;
@@ -84,6 +86,7 @@ public class HandController : MonoBehaviour
         if (holding_sponge)
         {
             sponge_obj.transform.position = new_pos;
+            sponge_script.distance_moved_this_frame = (move_dir * move_speed).magnitude;
         }
         // moving the plate
         if (holding_plate)

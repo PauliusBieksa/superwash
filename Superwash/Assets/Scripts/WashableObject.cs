@@ -15,6 +15,7 @@ public class WashableObject : MonoBehaviour
 
 
     public bool is_clean = false;
+    public bool is_wet = false;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class WashableObject : MonoBehaviour
 
     public void clean(float dist)
     {
+        if (!is_wet) return;
         dist_cleaned += dist;
         float threshold = 0f;
         for (int i = 0; i < dist_to_clean.Count; i++)
@@ -39,6 +41,7 @@ public class WashableObject : MonoBehaviour
                 {
                     dirt_level = i;
                     dirt_sprite_renderer.sprite = dirt_sprites[i];
+                    Debug.Log(i);
                     break;
                 }
             }
