@@ -79,8 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 1256872573
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1678886858614607995, guid: b056b6edbe6f0a74ea8fa999dde4c185, type: 3}
-  m_Color: {r: 0.56545925, g: 0.9150943, b: 0.5959455, a: 1}
+  m_Sprite: {fileID: -2934986251243102048, guid: eb95ce1b037cc7845b92a32371827a54, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   edges:
   - -7.84
   - 4.28
-  - 8.33
+  - 8.44
   - -4.59
   center_line: 0
   angle_coeficient: 20
@@ -143,7 +143,13 @@ MonoBehaviour:
   sponge_obj: {fileID: 0}
   detergent_script: {fileID: 0}
   taps_script: {fileID: 0}
+  detergentAnimator: {fileID: 0}
+  soundManager: {fileID: 4189227624234397124, guid: bb44f0bac64d482479a6dc3c340d7c28, type: 3}
+  spongeUp: {fileID: 8300000, guid: 58761a85023425c4492eda053088f990, type: 3}
+  spongeDown: {fileID: 8300000, guid: 4d6e39bde2c24454d93a6cea929e2d78, type: 3}
+  turningTap: {fileID: 8300000, guid: 106fb647652cbc0468ac319205426366, type: 3}
   holding_sponge: 0
+  holding_plate: 0
 --- !u!58 &7857979713230099777
 CircleCollider2D:
   m_ObjectHideFlags: 0

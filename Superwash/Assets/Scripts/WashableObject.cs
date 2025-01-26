@@ -13,40 +13,33 @@ public class WashableObject : MonoBehaviour
     int dirt_level = 0;
     float dist_cleaned = 0f;
 
-
     public bool is_clean = false;
     public bool is_wet = false;
     public bool is_being_held = false;
 
+    private float next_threshold = 0f;
+
     void Start()
     {
-
-    }
-
-    private void Update()
-    {
-
+        if (dist_to_clean.Count > 0)
+            next_threshold = dist_to_clean[0];
     }
 
     public void clean(float dist)
     {
-        if (!is_wet) return;
+        if (!is_wet || is_clean) return;
+
         dist_cleaned += dist;
-        float threshold = 0f;
-        for (int i = 0; i < dist_to_clean.Count; i++)
+
+        while (dist_cleaned >= next_threshold && dirt_level < dist_to_clean.Count - 1)
         {
-            threshold += dist_to_clean[i];
-            if (dist_cleaned < threshold)
-            {
-                if (dirt_level != i)
-                {
-                    dirt_level = i;
-                    dirt_sprite_renderer.sprite = dirt_sprites[i];
-                    break;
-                }
-            }
+            dirt_level++;
+            dirt_sprite_renderer.sprite = dirt_sprites[dirt_level];
+
+            next_threshold += dist_to_clean[dirt_level];
         }
-        if (dist_cleaned > threshold)
+
+        if (dist_cleaned >= next_threshold && dirt_level == dist_to_clean.Count - 1)
         {
             is_clean = true;
             dirt_sprite_renderer.enabled = false;
@@ -59,5 +52,10 @@ public class WashableObject : MonoBehaviour
         is_clean = false;
         dirt_level = 0;
         dist_cleaned = 0f;
+
+        if (dist_to_clean.Count > 0)
+            next_threshold = dist_to_clean[0];
+
+        dirt_sprite_renderer.sprite = dirt_sprites[0];
     }
 }
