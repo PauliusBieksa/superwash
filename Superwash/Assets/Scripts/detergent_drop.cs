@@ -18,7 +18,7 @@ public class detergent_drop : MonoBehaviour
     {
         start_pos = transform.position;
         end_y = start_pos.y - detergent_script.drop_distance;
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     // Update is called once per frame

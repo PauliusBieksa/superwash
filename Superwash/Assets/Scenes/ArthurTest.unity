@@ -325,7 +325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8285000135307555493, guid: 9adde3fb8dd33ba44b486eea703d37d5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -355,6 +355,10 @@ PrefabInstance:
     - target: {fileID: 7123643329192309419, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7123643329192309419, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7610209116831850069, guid: 68d2e510afeb37e40b39424d255d512c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -719,6 +723,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd2a1f580489194fba1f09c2692c05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &448956827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 448956828}
+  - component: {fileID: 448956829}
+  m_Layer: 0
+  m_Name: PlateStack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &448956828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448956827}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.94, y: -2.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &448956829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448956827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1654c45d47ecf444ab2c00d72109f4ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platePrefab: {fileID: 794323447850891188, guid: a5dd9ff763fb1864ea2d92095722a1eb, type: 3}
+  basePlates: 1
+  plateHeight: 0.5
 --- !u!1001 &656169590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1406,4 +1457,5 @@ SceneRoots:
   - {fileID: 1347093014}
   - {fileID: 2144323204}
   - {fileID: 656169590}
+  - {fileID: 448956828}
   - {fileID: 1559063331}

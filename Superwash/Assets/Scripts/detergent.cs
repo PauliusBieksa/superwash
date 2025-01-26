@@ -20,12 +20,13 @@ public class detergent : MonoBehaviour
 
     public void Squeeze()
     {
-        if (drop.activeSelf)
-            return;
+        var dropq = Instantiate(drop, new Vector3(7.288883f, 3.41f,0f), Quaternion.identity);
+        dropq.SetActive(true);
+        //if (drop.activeSelf)
+        //    return;
 
         // TODO: add animation here
 
-        drop.SetActive(true);
     }
 
     private void OnDrawGizmosSelected()
