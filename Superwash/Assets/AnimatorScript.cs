@@ -4,12 +4,37 @@ using UnityEngine;
 
 public class AnimatorScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    IEnumerator Start()
+    private Animator anim;
+    void Start()
     {
-        yield return new WaitForSeconds(5f);
+        anim = GetComponent<Animator>();
+        
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playAnimation();
+        }
+    }
+    public void playAnimation()
+    {
+        // Check if the animation is playing
+        if (anim != null)
+        {
+            anim.Play("Base Layer.ArmSwing", 0, 0f);
 
-        GetComponent<Animator>().Play("ArmSwing");
+        }
+        //Set timer to perform some thing after the animation
+        StartCoroutine(AfterAnimation());
     }
 
+    private IEnumerator AfterAnimation()
+    {
+        
+        yield return new WaitForSeconds(0.5f);
+
+        //Place the code here to perform things after the animation
+        Debug.Log("Display after animation");
+    }
 }
