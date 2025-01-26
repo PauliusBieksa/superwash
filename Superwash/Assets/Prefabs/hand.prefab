@@ -138,8 +138,8 @@ MonoBehaviour:
   - -4.59
   center_line: 0
   angle_coeficient: 20
-  open_sprite: {fileID: 1678886858614607995, guid: b056b6edbe6f0a74ea8fa999dde4c185, type: 3}
-  closed_sprite: {fileID: -3035312099375538977, guid: c1b4af0f0cd41e540b182e218fe34508, type: 3}
+  open_sprite: {fileID: -2934986251243102048, guid: eb95ce1b037cc7845b92a32371827a54, type: 3}
+  closed_sprite: {fileID: -8560087554418376652, guid: b111b8e4fbe5f3c4998a3e4baae1dfc5, type: 3}
   sponge_obj: {fileID: 0}
   detergent_script: {fileID: 0}
   taps_script: {fileID: 0}
