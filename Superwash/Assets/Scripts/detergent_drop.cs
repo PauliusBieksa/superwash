@@ -6,6 +6,8 @@ public class detergent_drop : MonoBehaviour
     float drop_speed = 5f;
     [SerializeField]
     detergent detergent_script;
+    [SerializeField]
+    sponge sponge_script;
 
     float timer = 0f;
     public Vector3 start_pos = Vector3.zero;
@@ -34,6 +36,16 @@ public class detergent_drop : MonoBehaviour
 
         if (transform.position.y < end_y)
         {
+            transform.position = start_pos;
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "sponge")
+        {
+            sponge_script.add_drop();
             transform.position = start_pos;
             gameObject.SetActive(false);
         }

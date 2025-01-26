@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Detergent_headless_0: 4832613097607317407
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -19,14 +19,17 @@ public class HandController : MonoBehaviour
     [SerializeField]
     Sprite closed_sprite;
     [SerializeField]
-    GameObject sponge;
+    GameObject sponge_obj;
     [SerializeField]
     detergent detergent_script;
+    [SerializeField]
+    Taps taps_script;
 
     private Vector3 move_dir = Vector3.zero;
     private bool is_hand_closed = false;
     private bool colliding_with_sponge = false;
     private bool hand_on_detergent = false;
+    private bool hand_on_taps = false;
 
     public bool holding_sponge;
 
@@ -72,7 +75,7 @@ public class HandController : MonoBehaviour
         // moving the sponge
         if (holding_sponge)
         {
-            sponge.transform.position = new_pos;
+            sponge_obj.transform.position = new_pos;
         }
 
         Vector3 facing = (new Vector3(center_line, angle_coeficient, 0)) - new_pos;
@@ -86,6 +89,10 @@ public class HandController : MonoBehaviour
         {
             detergent_script.Squeeze();
         }
+        if (hand_on_taps && Input.GetAxisRaw("Interact") > 0)
+        {
+            taps_script.spin();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -94,6 +101,8 @@ public class HandController : MonoBehaviour
             colliding_with_sponge = true;
         else if (collision.tag == "detergent")
             hand_on_detergent = true;
+        else if (collision.tag == "taps")
+            hand_on_taps = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -102,6 +111,8 @@ public class HandController : MonoBehaviour
             colliding_with_sponge = false;
         else if (collision.tag == "detergent")
             hand_on_detergent = false;
+        else if (collision.tag == "taps")
+            hand_on_taps = false;
     }
 
     private void OnDrawGizmosSelected()

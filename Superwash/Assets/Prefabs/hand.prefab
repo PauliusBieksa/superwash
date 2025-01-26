@@ -77,10 +77,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1256872573
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 1678886858614607995, guid: b056b6edbe6f0a74ea8fa999dde4c185, type: 3}
-  m_Color: {r: 0.36320752, g: 0.59349316, b: 1, a: 1}
+  m_Color: {r: 0.56545925, g: 0.9150943, b: 0.5959455, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -133,15 +133,16 @@ MonoBehaviour:
   show_debug: 1
   edges:
   - -7.84
-  - 1.62
+  - 4.28
   - 8.33
   - -4.59
   center_line: 0
   angle_coeficient: 20
   open_sprite: {fileID: 1678886858614607995, guid: b056b6edbe6f0a74ea8fa999dde4c185, type: 3}
   closed_sprite: {fileID: -3035312099375538977, guid: c1b4af0f0cd41e540b182e218fe34508, type: 3}
-  sponge: {fileID: 0}
-  colliding_with_sponge: 0
+  sponge_obj: {fileID: 0}
+  detergent_script: {fileID: 0}
+  taps_script: {fileID: 0}
   holding_sponge: 0
 --- !u!58 &7857979713230099777
 CircleCollider2D:
@@ -178,4 +179,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.74
+  m_Radius: 0.59

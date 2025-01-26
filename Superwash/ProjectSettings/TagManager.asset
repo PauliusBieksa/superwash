@@ -6,6 +6,7 @@ TagManager:
   tags:
   - sponge
   - detergent
+  - taps
   layers:
   - Default
   - TransparentFX
@@ -46,6 +47,9 @@ TagManager:
   - name: Background
     uniqueID: 3071038781
     locked: 0
+  - name: Taps
+    uniqueID: 608954409
+    locked: 0
   - name: Dishes
     uniqueID: 488646925
     locked: 0
@@ -54,6 +58,9 @@ TagManager:
     locked: 0
   - name: Sponge
     uniqueID: 3213806469
+    locked: 0
+  - name: Water
+    uniqueID: 4190486169
     locked: 0
   - name: Hand
     uniqueID: 1256872573

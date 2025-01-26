@@ -1,10 +1,58 @@
 fileFormatVersion: 2
-guid: 60c3fdd5eff8a7d4f8d84d60bf1f36d1
+guid: 246413941b207f74aac0a6da20376cae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6863624429240434613
-    second: detergent_0
+      213: 2928202341104748091
+    second: Water sprites_0
+  - first:
+      213: 6845968399188971668
+    second: Water sprites_1
+  - first:
+      213: -5437018103734078685
+    second: Water sprites_2
+  - first:
+      213: -8911360159211816668
+    second: Water sprites_3
+  - first:
+      213: -1553809685184303482
+    second: Water sprites_4
+  - first:
+      213: -8160718140191147215
+    second: Water sprites_5
+  - first:
+      213: -4513033013004133975
+    second: Water sprites_6
+  - first:
+      213: -2761271094483593388
+    second: Water sprites_7
+  - first:
+      213: 8158083156939162815
+    second: Water sprites_8
+  - first:
+      213: -2495009233066793910
+    second: Water sprites_9
+  - first:
+      213: -1293096195390653213
+    second: Water sprites_10
+  - first:
+      213: 8897403726369323607
+    second: Water sprites_11
+  - first:
+      213: 8675714711276318426
+    second: Water sprites_12
+  - first:
+      213: 4103535781385134754
+    second: Water sprites_13
+  - first:
+      213: -696207735370987141
+    second: Water sprites_14
+  - first:
+      213: -9053012255053936932
+    second: Water sprites_15
+  - first:
+      213: -7687016149583352090
+    second: Water sprites_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,23 +187,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: detergent_0
+      name: Water sprites_0
       rect:
         serializedVersion: 2
-        x: 210
-        y: 572
-        width: 202
-        height: 321
+        x: 340
+        y: 301
+        width: 280
+        height: 340
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b404e6752f18fb0a0800000000000000
-      internalID: -6863624429240434613
+      spriteID: b360404d38013a820800000000000000
+      internalID: 2928202341104748091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Water sprites_2
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 319
+        width: 280
+        height: 340
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 323ff8957d4db84b0800000000000000
+      internalID: -5437018103734078685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Water sprites_4
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 300
+        width: 280
+        height: 340
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68e2702e252cf6ae0800000000000000
+      internalID: -1553809685184303482
       vertices: []
       indices: 
       edges: []
@@ -164,7 +256,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 04e8f3722d8a9e240956a0280a9e5187
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +266,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      detergent_0: -6863624429240434613
+      Water sprites_0: 2928202341104748091
+      Water sprites_2: -5437018103734078685
+      Water sprites_4: -1553809685184303482
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
