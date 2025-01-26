@@ -85,13 +85,16 @@ public class HandController : MonoBehaviour
         else
             transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(facing, Vector3.up));
 
-        if (hand_on_detergent && Input.GetAxisRaw("Interact") > 0)
+        if (!holding_sponge)
         {
-            detergent_script.Squeeze();
-        }
-        if (hand_on_taps && Input.GetAxisRaw("Interact") > 0)
-        {
-            taps_script.spin();
+            if (hand_on_detergent && Input.GetAxisRaw("Interact") > 0)
+            {
+                detergent_script.Squeeze();
+            }
+            if (hand_on_taps && Input.GetAxisRaw("Interact") > 0)
+            {
+                taps_script.spin();
+            }
         }
     }
 

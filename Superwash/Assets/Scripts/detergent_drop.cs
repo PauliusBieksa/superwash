@@ -10,8 +10,8 @@ public class detergent_drop : MonoBehaviour
     sponge sponge_script;
 
     float timer = 0f;
-    public Vector3 start_pos = Vector3.zero;
-    public float end_y = 0f;
+    Vector3 start_pos = Vector3.zero;
+    float end_y = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
