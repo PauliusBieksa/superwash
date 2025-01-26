@@ -13,46 +13,70 @@ public class HandController : MonoBehaviour
     float center_line = 0f;
     [SerializeField]
     float angle_coeficient = -10f;
-  
 
+    [SerializeField]
+    Sprite open_sprite;
+    [SerializeField]
+    Sprite closed_sprite;
+    [SerializeField]
+    GameObject sponge_obj;
+    [SerializeField]
+    detergent detergent_script;
+    [SerializeField]
+    Taps taps_script;
+
+    private Vector3 move_dir = Vector3.zero;
+    private bool is_hand_closed = false;
+    private bool colliding_with_sponge = false;
+    private bool hand_on_detergent = false;
+    private bool hand_on_taps = false;
+
+    public bool holding_sponge;
 
     Rigidbody2D rig;
+    SpriteRenderer sprite_renderer;
 
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        sprite_renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 dir = new Vector3(0f, 0f, 0f);
+        if (Input.GetAxisRaw("Interact") > 0 && !is_hand_closed)
+        {
+            is_hand_closed = true;
+            sprite_renderer.sprite = closed_sprite;
+        }
+        if (Input.GetAxisRaw("Interact") == 0 && is_hand_closed)
+        {
+            is_hand_closed = false;
+            sprite_renderer.sprite = open_sprite;
+        }
+
+        if (is_hand_closed && colliding_with_sponge)
+            holding_sponge = true;
+        else
+            holding_sponge = false;
+
+        // movement
+        move_dir = new Vector3(0f, 0f, 0f);
         Vector3 new_pos = transform.position;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            dir += new Vector3(0f, 1f, 0f);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            dir += new Vector3(-1f, 0f, 0f);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            dir += new Vector3(0f, -1f, 0f);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            dir += new Vector3(1f, 0f, 0f);
-        }
-        dir.Normalize();
-
-        new_pos += dir * move_speed * Time.deltaTime;
+        move_dir = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+        new_pos += move_dir * move_speed * Time.deltaTime;
         if (new_pos.x < edges[0]) new_pos.x = edges[0];
         if (new_pos.y > edges[1]) new_pos.y = edges[1];
         if (new_pos.x > edges[2]) new_pos.x = edges[2];
         if (new_pos.y < edges[3]) new_pos.y = edges[3];
         rig.MovePosition(new_pos);
+
+        // moving the sponge
+        if (holding_sponge)
+        {
+            sponge_obj.transform.position = new_pos;
+        }
 
         Vector3 facing = (new Vector3(center_line, angle_coeficient, 0)) - new_pos;
         facing.Normalize();
@@ -60,6 +84,38 @@ public class HandController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, -Vector3.Angle(facing, Vector3.up));
         else
             transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(facing, Vector3.up));
+
+        if (!holding_sponge)
+        {
+            if (hand_on_detergent && Input.GetAxisRaw("Interact") > 0)
+            {
+                detergent_script.Squeeze();
+            }
+            if (hand_on_taps && Input.GetAxisRaw("Interact") > 0)
+            {
+                taps_script.spin();
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "sponge")
+            colliding_with_sponge = true;
+        else if (collision.tag == "detergent")
+            hand_on_detergent = true;
+        else if (collision.tag == "taps")
+            hand_on_taps = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "sponge")
+            colliding_with_sponge = false;
+        else if (collision.tag == "detergent")
+            hand_on_detergent = false;
+        else if (collision.tag == "taps")
+            hand_on_taps = false;
     }
 
     private void OnDrawGizmosSelected()
