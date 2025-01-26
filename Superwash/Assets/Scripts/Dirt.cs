@@ -13,6 +13,7 @@ public class Dirt : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         for (int i = 0; i < dirtCleaningDistance.Count; i++)
         {
             if (i > 0)

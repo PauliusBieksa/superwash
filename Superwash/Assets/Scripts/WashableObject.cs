@@ -3,27 +3,58 @@ using System.Collections.Generic;
 
 public class WashableObject : MonoBehaviour
 {
-    public string objectName;
-    public Sprite cleanSprite;
-    public bool isClean = false;
-    public GameObject dirt;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    SpriteRenderer dirt_sprite_renderer;
+    [SerializeField]
+    List<Sprite> dirt_sprites;
+    [SerializeField]
+    List<float> dist_to_clean;
+
+    int dirt_level = 0;
+    float dist_cleaned = 0f;
+
+
+    public bool is_clean = false;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = cleanSprite;
+
     }
 
     private void Update()
     {
-        if (!isClean)
+
+    }
+
+    public void clean(float dist)
+    {
+        dist_cleaned += dist;
+        float threshold = 0f;
+        for (int i = 0; i < dist_to_clean.Count; i++)
         {
-            if (dirt.GetComponent<Dirt>().cleaningDistance >= dirt.GetComponent<Dirt>().dirtCleaningDistanceRSum[dirt.GetComponent<Dirt>().dirtCleaningDistanceRSum.Count - 1])
+            threshold += dist_to_clean[i];
+            if (dist_cleaned < threshold)
             {
-                isClean = true;
-                dirt.SetActive(false);
+                if (dirt_level != i)
+                {
+                    dirt_level = i;
+                    dirt_sprite_renderer.sprite = dirt_sprites[i];
+                    break;
+                }
             }
         }
+        if (dist_cleaned > threshold)
+        {
+            is_clean = true;
+            dirt_sprite_renderer.enabled = false;
+        }
+    }
+
+    public void Reset()
+    {
+        dirt_sprite_renderer.enabled = true;
+        is_clean = false;
+        dirt_level = 0;
+        dist_cleaned = 0f;
     }
 }

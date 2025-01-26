@@ -30,8 +30,11 @@ public class HandController : MonoBehaviour
     private bool colliding_with_sponge = false;
     private bool hand_on_detergent = false;
     private bool hand_on_taps = false;
+    private bool hand_on_plate = false;
 
     public bool holding_sponge;
+    public bool holding_plate;
+    GameObject plate_obj;
 
     Rigidbody2D rig;
     SpriteRenderer sprite_renderer;
@@ -61,6 +64,11 @@ public class HandController : MonoBehaviour
         else
             holding_sponge = false;
 
+        if (is_hand_closed && hand_on_plate)
+            holding_plate = true;
+        else
+            holding_plate = false;
+
         // movement
         move_dir = new Vector3(0f, 0f, 0f);
         Vector3 new_pos = transform.position;
@@ -77,6 +85,11 @@ public class HandController : MonoBehaviour
         {
             sponge_obj.transform.position = new_pos;
         }
+        // moving the plate
+        if (holding_plate)
+        {
+            plate_obj.transform.position = new_pos;
+        }
 
         Vector3 facing = (new Vector3(center_line, angle_coeficient, 0)) - new_pos;
         facing.Normalize();
@@ -85,7 +98,7 @@ public class HandController : MonoBehaviour
         else
             transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(facing, Vector3.up));
 
-        if (!holding_sponge)
+        if (!holding_sponge && !holding_plate)
         {
             if (hand_on_detergent && Input.GetAxisRaw("Interact") > 0)
             {
@@ -106,6 +119,11 @@ public class HandController : MonoBehaviour
             hand_on_detergent = true;
         else if (collision.tag == "taps")
             hand_on_taps = true;
+        else if (collision.tag == "plate")
+        {
+            hand_on_plate = true;
+            plate_obj = collision.gameObject;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -116,6 +134,8 @@ public class HandController : MonoBehaviour
             hand_on_detergent = false;
         else if (collision.tag == "taps")
             hand_on_taps = false;
+        else if (collision.tag == "plate")
+            hand_on_plate = false;
     }
 
     private void OnDrawGizmosSelected()
