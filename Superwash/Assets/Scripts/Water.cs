@@ -16,9 +16,11 @@ public class Water : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "plate")
+        Debug.Log("SSS");
+        if (collision.CompareTag("plate"))
         {
-            collision.gameObject.GetComponent<WashableObject>().is_wet = true;
+            Debug.Log("SSSsdfhbsdfb ");
+            collision.GetComponent<WashableObject>().is_wet = true;
         }
     }
 }

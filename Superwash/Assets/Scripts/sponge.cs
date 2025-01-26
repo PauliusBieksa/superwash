@@ -11,9 +11,9 @@ public class sponge : MonoBehaviour
 
     public float distance_moved_this_frame = 0f;
 
-    bool sponge_on_plate = false;
-    GameObject plate_obj;
-    WashableObject plate_script;
+    public bool sponge_on_plate = false;
+    public GameObject plate_obj;
+    public WashableObject plate_script;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +27,7 @@ public class sponge : MonoBehaviour
         if (sponge_on_plate && detergent_level > 0f)
         {
             plate_script.clean(distance_moved_this_frame);
-            detergent_level -= distance_moved_this_frame;
+            detergent_level -= distance_moved_this_frame * 0.01f;
             if (detergent_level < 0f) detergent_level = 0f;
         }
     }
@@ -41,7 +41,7 @@ public class sponge : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "plate")
+        if (collision.CompareTag("plate"))
         {
             sponge_on_plate = true;
             plate_obj = collision.gameObject;
@@ -51,7 +51,7 @@ public class sponge : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "plate")
+        if (collision.CompareTag("plate"))
         {
             sponge_on_plate = false;
         }

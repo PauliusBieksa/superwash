@@ -27,7 +27,6 @@ public class WashableObject : MonoBehaviour
     public void clean(float dist)
     {
         if (!is_wet || is_clean) return;
-
         dist_cleaned += dist;
 
         while (dist_cleaned >= next_threshold && dirt_level < dist_to_clean.Count - 1)
@@ -41,6 +40,7 @@ public class WashableObject : MonoBehaviour
         if (dist_cleaned >= next_threshold && dirt_level == dist_to_clean.Count - 1)
         {
             is_clean = true;
+            FindFirstObjectByType<PlateStacking>().RemovePlateFromStack();
             dirt_sprite_renderer.enabled = false;
         }
     }
