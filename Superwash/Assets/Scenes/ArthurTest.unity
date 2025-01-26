@@ -768,7 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platePrefab: {fileID: 794323447850891188, guid: a5dd9ff763fb1864ea2d92095722a1eb, type: 3}
-  basePlates: 1
+  basePlates: 5
   plateHeight: 0.5
 --- !u!1001 &656169590
 PrefabInstance:
