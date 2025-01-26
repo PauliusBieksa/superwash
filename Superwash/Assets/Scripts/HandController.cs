@@ -25,6 +25,16 @@ public class HandController : MonoBehaviour
     [SerializeField]
     Taps taps_script;
 
+    [Header("Audio")]
+    [SerializeField]
+    SoundManager soundManager;
+    [SerializeField]
+    AudioClip spongeUp;
+    [SerializeField]
+    AudioClip spongeDown;
+    [SerializeField]
+    AudioClip tapsSpin;
+
     private Vector3 move_dir = Vector3.zero;
     private bool is_hand_closed = false;
     private bool colliding_with_sponge = false;
@@ -42,24 +52,30 @@ public class HandController : MonoBehaviour
         sprite_renderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (Input.GetAxisRaw("Interact") > 0 && !is_hand_closed)
         {
             is_hand_closed = true;
             sprite_renderer.sprite = closed_sprite;
+
+            if (colliding_with_sponge && !holding_sponge)
+            {
+                holding_sponge = true;
+                soundManager.PlaySound(spongeUp);
+            }
         }
         if (Input.GetAxisRaw("Interact") == 0 && is_hand_closed)
         {
             is_hand_closed = false;
             sprite_renderer.sprite = open_sprite;
-        }
 
-        if (is_hand_closed && colliding_with_sponge)
-            holding_sponge = true;
-        else
-            holding_sponge = false;
+            if (holding_sponge)
+            {
+                holding_sponge = false;
+                soundManager.PlaySound(spongeDown);
+            }
+        }
 
         // movement
         move_dir = new Vector3(0f, 0f, 0f);
@@ -87,12 +103,14 @@ public class HandController : MonoBehaviour
 
         if (!holding_sponge)
         {
-            if (hand_on_detergent && Input.GetAxisRaw("Interact") > 0)
+            if (hand_on_detergent && Input.GetButtonDown("Interact"))
             {
+                soundManager.PlaySound(spongeDown,1,0.5f);
                 detergent_script.Squeeze();
             }
-            if (hand_on_taps && Input.GetAxisRaw("Interact") > 0)
+            if (hand_on_taps && Input.GetButtonDown("Interact"))
             {
+                soundManager.PlaySound(tapsSpin);
                 taps_script.spin();
             }
         }
