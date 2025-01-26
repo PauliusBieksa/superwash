@@ -25,6 +25,18 @@ public class HandController : MonoBehaviour
     detergent detergent_script;
     [SerializeField]
     Taps taps_script;
+    [SerializeField]
+    Animator detergentAnimator;
+
+    [Header("AUDIO")]
+    [SerializeField]
+    SoundManager soundManager;
+    [SerializeField]
+    AudioClip spongeUp;
+    [SerializeField]
+    AudioClip spongeDown;
+    [SerializeField]
+    AudioClip turningTap;
 
     private Vector3 move_dir = Vector3.zero;
     private bool is_hand_closed = false;
@@ -47,20 +59,36 @@ public class HandController : MonoBehaviour
         sponge_script = sponge_obj.GetComponent<sponge>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-        if (Input.GetAxisRaw("Interact") > 0 && !is_hand_closed)
+        if (Input.GetButtonDown("Interact") && !is_hand_closed)
         {
             is_hand_closed = true;
             sprite_renderer.sprite = closed_sprite;
+
+            if (colliding_with_sponge && !holding_sponge)
+            {
+                holding_sponge = true;
+                soundManager.PlaySound(spongeUp);
+            }
         }
-        if (Input.GetAxisRaw("Interact") == 0 && is_hand_closed)
+        if (Input.GetButtonUp("Interact") && is_hand_closed)
         {
             is_hand_closed = false;
             sprite_renderer.sprite = open_sprite;
+
+            if (holding_sponge)
+            {
+                holding_sponge = false;
+                soundManager.PlaySound(spongeDown);
+            }
         }
 
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if (is_hand_closed && colliding_with_sponge && !holding_plate)
             holding_sponge = true;
         else
@@ -103,12 +131,16 @@ public class HandController : MonoBehaviour
 
         if (!holding_sponge && !holding_plate)
         {
-            if (hand_on_detergent && Input.GetAxisRaw("Interact") > 0)
+            if (hand_on_detergent && Input.GetButtonDown("Interact"))
             {
+                detergentAnimator.SetTrigger("squeeze");
+                soundManager.PlaySound(spongeDown, 1, 1.2f);
+                soundManager.PlaySound(spongeDown, 1, 0.8f);
                 detergent_script.Squeeze();
             }
-            if (hand_on_taps && Input.GetAxisRaw("Interact") > 0)
+            if (hand_on_taps && Input.GetButtonDown("Interact"))
             {
+                soundManager.PlaySound(turningTap);
                 taps_script.spin();
             }
         }
