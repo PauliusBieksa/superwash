@@ -27,7 +27,7 @@ public class sponge : MonoBehaviour
         if (sponge_on_plate && detergent_level > 0f)
         {
             plate_script.clean(distance_moved_this_frame);
-            detergent_level -= distance_moved_this_frame * 0.01f;
+            detergent_level -= distance_moved_this_frame;
             if (detergent_level < 0f) detergent_level = 0f;
         }
     }

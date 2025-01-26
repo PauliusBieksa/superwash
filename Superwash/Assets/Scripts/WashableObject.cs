@@ -15,6 +15,7 @@ public class WashableObject : MonoBehaviour
 
     public bool is_clean = false;
     public bool is_wet = false;
+    public bool is_being_held = false;
 
     private float next_threshold = 0f;
 

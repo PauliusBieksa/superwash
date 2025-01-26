@@ -48,6 +48,7 @@ public class HandController : MonoBehaviour
     public bool holding_sponge;
     public bool holding_plate;
     GameObject plate_obj;
+    WashableObject plate_script;
 
     Rigidbody2D rig;
     SpriteRenderer sprite_renderer;
@@ -120,6 +121,11 @@ public class HandController : MonoBehaviour
         if (holding_plate)
         {
             plate_obj.transform.position = new_pos;
+            plate_script.is_being_held = true;
+        }
+        else if (plate_script != null)
+        {
+            plate_script.is_being_held = false;
         }
 
         Vector3 facing = (new Vector3(center_line, angle_coeficient, 0)) - new_pos;
@@ -158,6 +164,7 @@ public class HandController : MonoBehaviour
         {
             hand_on_plate = true;
             plate_obj = collision.gameObject;
+            plate_script = plate_obj.GetComponent<WashableObject>();
         }
     }
 
